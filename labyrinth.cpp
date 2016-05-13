@@ -16,12 +16,22 @@ Labyrinth::Labyrinth(std::string filename) {
         std::string line;
         while(std::getline(file, line))  {
             //all vectors within lab vector
-            std::vector<char> labline(line.begin(), line.end()-1);
+            std::vector<char> labline(line.begin(), line.end());
             //labline is "pushed into"(stored) in lab vector
             lab.push_back(labline);
         }
     }
     file.close();
+}
+
+void Labyrinth::show() const{
+    //don't use int i dammit, use iteratoooorsss. data types of iterator --> auto (short)
+    for(auto it = lab.begin(); it != lab.end(); ++it){
+        for (auto cit = (*it).begin(); cit != (*it).end(); ++cit){
+            std::cout << *cit;
+        }
+        std::cout << std::endl;
+    }
 }
 
 Labyrinth::~Labyrinth(){}

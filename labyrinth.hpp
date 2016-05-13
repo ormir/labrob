@@ -24,6 +24,7 @@ private:
     int exit [2];
 
 public:
+    void show() const;
     Labyrinth (std::string);
     ~Labyrinth ();
 };
