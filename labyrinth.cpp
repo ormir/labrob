@@ -16,9 +16,11 @@ Labyrinth::Labyrinth(std::string filename) {
         std::string line;
         while(std::getline(file, line))  {
             //all vectors within lab vector
-            std::vector<char> labline(line.begin(), line.end());
-            //labline is "pushed into"(stored) in lab vector
-            lab.push_back(labline);
+            if (line.size() > 1) {
+                std::vector<char> labline(line.begin(), line.end());
+                //labline is "pushed into"(stored) in lab vector
+                lab.push_back(labline);
+            }
         }
     }
     file.close();
