@@ -9,29 +9,25 @@
 #include "labyrinth.hpp"
 
 
-Labyrinth::Labyrinth(std::string filename) {
-    //open the file that is handed over as 'filename'
-    std::ifstream file(filename);
-    if (file.is_open()) {
-        std::string line;
-        while(std::getline(file, line))  {
-            //all vectors within lab vector
-            //if a line of the maze only contains one character, don't save in lab vector
-            if (line.size() > 1) {
-                std::vector<char> labline(line.begin(), line.end());
-                //labline is "pushed into"(stored) in lab vector
-                lab.push_back(labline);
-            }
+Labyrinth::Labyrinth(std::fstream &file) {
+
+    std::string line;
+    while(std::getline(file, line))  {
+        //all vectors within lab vector
+        //if a line of the maze only contains one character, don't save in lab vector
+        if (line.size() > 1) {
+            std::vector<char> labline(line.begin(), line.end());
+            //labline is "pushed into"(stored) in lab vector
+            lab.push_back(labline);
         }
     }
-    file.close();
     
     entry[0]= {-1};
     exit [0] = {-1};
     width = (int) lab.begin()->size();
     height = (int) lab.size();
     
-    // Get empty entry or array
+    // Get empty entry or exit
     auto enOrEx = [&](){ return entry[0] == -1 ? entry : exit; };
     
     //first vector -> first character until first vector -> last character

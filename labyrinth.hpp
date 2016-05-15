@@ -25,7 +25,7 @@ private:
 
 public:
     void show() const;
-    Labyrinth (std::string);
+    Labyrinth (std::fstream&);
     ~Labyrinth ();
 };
 
