@@ -52,6 +52,7 @@ Labyrinth::Labyrinth(std::fstream &file) {
         if((*it) == ' '){
             enOrEx() [1] = height - 1;
             enOrEx() [0] = (int) (-(it - lab.rbegin()->rend()));
+            enOrEx() [0] -= 1;
         }
     }
     
@@ -64,6 +65,39 @@ Labyrinth::Labyrinth(std::fstream &file) {
     }
 }
 
+std::map<char, char> Labyrinth::getSurrounding(int x, int y) const {
+    std::map<char, char> surrounding;
+    
+    // North
+    surrounding['n'] = (y-1) >= 0 ? lab.at(y-1).at(x) : '#';
+    
+    // Sowth
+    surrounding['s'] = (y+1) < height ? lab.at(y+1).at(x) : '#';
+    
+    // West    
+    surrounding['w'] = (x-1) >= 0 ? lab.at(y).at(x-1) : '#';
+    
+    // East
+    surrounding['e'] = (x+1) < width ? lab.at(y).at(x+1) : '#';
+    
+    return surrounding;
+}
+
+void Labyrinth::markPosition(int x, int y) {
+    if(lab.at(y).at(x) == ' ') {
+        // Check if corner
+        std::map<char, char> surr = getSurrounding(x, y);
+        if((surr['s'] == '#' && surr['w'] == '#' && surr['e'] == '#') ||
+           (surr['n'] == '#' && surr['w'] == '#' && surr['e'] == '#') ||
+           (surr['n'] == '#' && surr['s'] == '#' && surr['e'] == '#') ||
+           (surr['n'] == '#' && surr['w'] == '#' && surr['s'] == '#')) {
+               lab.at(y).at(x) = 'y';
+        } else
+           lab.at(y).at(x) = 'x';
+    } else {
+        lab.at(y).at(x) += 1;
+    }
+}
            
 void Labyrinth::show() const{
     //don't use int i dammit, use iteratoooorsss. data types of iterator --> auto (short)
@@ -78,5 +112,15 @@ void Labyrinth::show() const{
     std::cout << "height: " << height << std::endl;
     std::cout << "width: " << width << std::endl;
  }
+
+bool Labyrinth::isAtExit(int x, int y) const {
+    if(x == exit[0] && y == exit[1]) return true;
+    return false;
+}
+
+void  Labyrinth::getEntry(int &x, int &y) const {
+    x = entry[0];
+    y = entry[1];
+}
 
 Labyrinth::~Labyrinth(){}

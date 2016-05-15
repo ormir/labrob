@@ -13,6 +13,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <map>
 
 class Labyrinth {
 private:
@@ -22,10 +23,14 @@ private:
     //saves one integer for x and the other for y
     int entry [2];
     int exit [2];
-
+    char charAt(int, int) const;
 public:
-    void show() const;
     Labyrinth (std::fstream&);
+    std::map<char, char> getSurrounding(int, int) const;
+    void markPosition(int, int);
+    void show() const;
+    void getEntry(int&, int&) const;
+    bool isAtExit(int, int) const;
     ~Labyrinth ();
 };
 
