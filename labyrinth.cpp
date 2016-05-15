@@ -31,46 +31,41 @@ Labyrinth::Labyrinth(std::string filename) {
     width = (int) lab.begin()->size();
     height = (int) lab.size();
     
+    // Get empty entry or array
+    auto enOrEx = [&](){ return entry[0] == -1 ? entry : exit; };
+    
     //first vector -> first character until first vector -> last character
-    for(auto it = lab.begin()->begin(); it != lab.begin()->end(); ++it){
-        if((*it) == ' ' && entry[0] == -1) {
-            entry [0] = (int) (it - lab.begin()->begin());
-            entry [1] = 0;
-        } else if ((*it) == ' ' && exit[0] == -1) {
-            exit [0] = (int) (it - lab.begin()->begin());
-            exit [1] = 0;
-        }
-    }
-    for (auto it = lab.begin(); it != lab.end(); ++it){
-        if(*(it->end()) == ' ' && entry[0] == -1){
-            entry [0] = width-1;
-            entry [1] = (int) (it - lab.begin());
-        } else if (*(it->end()) == ' ' && exit[0] == -1) {
-            exit [0] = width-1;
-            exit [1] = (int) (it - lab.begin());
+    // Horisontal top check
+    for(auto it = lab.begin()->begin(); it != lab.begin()->end() && enOrEx()[0] == -1; ++it){
+        if((*it) == ' ') {
+            enOrEx() [1] = 0;
+            enOrEx() [0] = (int) (it - lab.begin()->begin());
         }
     }
     
-    for (auto it = lab.rbegin()->rbegin(); it != lab.rend()->rend(); ++it){
-        if((*it) == ' ' && entry[0] == -1){
-            entry [0] = (int) (it - lab.rbegin()->rend());
-            entry [1] = height-1;
-        } else if ((*it) == ' ' && exit[0] == -1){
-            exit [0] = (int) (it - lab.rbegin()->rend());
-            exit [1] = height-1;
+    // Vertical right check
+    for (auto it = lab.begin(); it != lab.end() && enOrEx()[0] == -1; ++it){
+        if(*(it->end()) == ' '){
+            enOrEx() [1] = (int) (it - lab.begin());
+            enOrEx() [0] = width-1;
         }
     }
     
-    for (auto it = lab.rbegin(); it != lab.rend(); ++it){
-        if(*(it->begin()) == ' ' && entry[0] == -1){
-            entry[0] = 0;
-            entry[1] = (int) (it-lab.rend());
-        } else if (*(it->begin()) == ' ' && exit[0] == -1) {
-            exit[0] = 0;
-            exit[1] = (int) (it-lab.rend());
+    // Horisontal bottom check
+    for (auto it = lab.rbegin()->rbegin(); it != (lab.rend()-1)->rend() && enOrEx()[0] == -1; ++it){
+        if((*it) == ' '){
+            enOrEx() [1] = height - 1;
+            enOrEx() [0] = (int) (-(it - lab.rbegin()->rend()));
         }
     }
-        
+    
+    // Vertical left check
+    for (auto it = lab.rbegin(); it != lab.rend() && enOrEx()[0] == -1; ++it){
+        if(*(it->begin()) == ' '){
+            enOrEx()[1] = (int) (it-lab.rend());
+            enOrEx()[0] = 0;
+        }
+    }
 }
 
            
