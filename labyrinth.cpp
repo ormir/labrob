@@ -128,4 +128,16 @@ void  Labyrinth::getEntry(int &x, int &y) const {
     y = entry[1];
 }
 
+void Labyrinth::help() const {
+    std::ifstream file("README.txt");
+    if (file.is_open()) {
+        // Read each line from file
+        std::string line;
+        while (std::getline(file, line)) std::cout << line << std::endl;
+    } else
+        std::cout << "FAIL reading help" << std::endl;
+    
+    file.close();
+}
+
 Labyrinth::~Labyrinth(){}

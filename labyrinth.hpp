@@ -35,6 +35,7 @@ public:
     int getHeight() const;
     int getWidth() const;
     bool isAtExit(int, int) const;
+    void help() const;
     ~Labyrinth ();
 };
 
