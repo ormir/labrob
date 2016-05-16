@@ -10,7 +10,6 @@
 
 Robot::Robot(const Labyrinth l) :
 steps(0),
-direction('s'),
 lab(l) {
     l.getEntry(curX, curY);
 }

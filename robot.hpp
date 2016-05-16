@@ -15,7 +15,6 @@
 class Robot {
 protected:
     int steps;
-    char direction;
     int curX;
     int curY;
     Labyrinth lab;

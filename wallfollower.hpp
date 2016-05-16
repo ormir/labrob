@@ -13,11 +13,10 @@
 #include "robot.hpp"
 
 class WallFollower: public Robot {
-    
-    
+    char direction;
+    char changeDirection();
 public:
     WallFollower(const Labyrinth);
-    void changeDirection();
     bool solve();
     ~WallFollower();
 };

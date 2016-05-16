@@ -9,6 +9,7 @@
 #include <iostream>
 #include "labyrinth.hpp"
 #include "wallfollower.hpp"
+#include "tremaux.hpp"
 
 int main(int argc, const char * argv[]) {
     
@@ -18,8 +19,7 @@ int main(int argc, const char * argv[]) {
         if(file.is_open()){
             Labyrinth lab (file);
             WallFollower rob(lab);
-            rob.solve();
-//            lab.show();
+            if (rob.solve()) std::cout << "Robot finished on " << rob.getSteps() << " steps" << std::endl;
         } else {
             std::cout << "File '" << argv[1] << "' cold not be oppend." << std::endl;
         }
