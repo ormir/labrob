@@ -65,6 +65,8 @@ Labyrinth::Labyrinth(std::fstream &file) {
     }
 }
 
+char& Labyrinth::at(int x, int y){ return lab.at(y).at(x); }
+
 std::map<char, char> Labyrinth::getSurrounding(int x, int y) const {
     std::map<char, char> surrounding;
     
@@ -82,6 +84,9 @@ std::map<char, char> Labyrinth::getSurrounding(int x, int y) const {
     
     return surrounding;
 }
+
+int Labyrinth::getHeight() const { return height; }
+int Labyrinth::getWidth() const { return width; }
 
 void Labyrinth::markPosition(int x, int y) {
     if(lab.at(y).at(x) == ' ') {

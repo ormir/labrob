@@ -10,6 +10,7 @@
 #include "labyrinth.hpp"
 #include "wallfollower.hpp"
 #include "tremaux.hpp"
+#include "recursive.hpp"
 
 int main(int argc, const char * argv[]) {
     
@@ -18,7 +19,7 @@ int main(int argc, const char * argv[]) {
         std::fstream file(argv[1]);
         if(file.is_open()){
             Labyrinth lab (file);
-            WallFollower rob(lab);
+            Recursive rob(lab);
             if (rob.solve()) std::cout << "Robot finished on " << rob.getSteps() << " steps" << std::endl;
         } else {
             std::cout << "File '" << argv[1] << "' cold not be oppend." << std::endl;

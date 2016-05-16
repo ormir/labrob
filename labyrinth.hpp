@@ -26,10 +26,14 @@ private:
     char charAt(int, int) const;
 public:
     Labyrinth (std::fstream&);
-    std::map<char, char> getSurrounding(int, int) const;
+    char &at(int, int);
+    
     void markPosition(int, int);
     void show() const;
     void getEntry(int&, int&) const;
+    std::map<char, char> getSurrounding(int, int) const;
+    int getHeight() const;
+    int getWidth() const;
     bool isAtExit(int, int) const;
     ~Labyrinth ();
 };
