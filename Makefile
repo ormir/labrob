@@ -2,7 +2,7 @@ labrob: main.o labyrinth.o recursive.o robot.o tremaux.o wallflower.o
 		g++ -std=c++11 main.o labyrinth.o recursive.o robot.o tremaux.o wallflower.o -o labrob
 
 main.o: main.cpp 
-		g++ -std=c++11 -c main.cpp
+		g++ -std=c++11 -pthread -c main.cpp
 
 labyrinth.o: labyrinth.cpp labyrinth.hpp
 		g++ -std=c++11 -c labyrinth.cpp
