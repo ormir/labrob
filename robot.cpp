@@ -14,6 +14,16 @@ lab(l) {
     l.getEntry(curX, curY);
 }
 
-int Robot::getSteps() const { return steps; }
+void Robot::path() {
+    // TODO Thread solve
+    thSolve = std::thread([this](){ solve(); });
+}
+
+bool Robot::solve() { return false; }
+
+int Robot::getSteps() {
+    thSolve.join();
+    return steps;
+}
 
 Robot::~Robot() {}

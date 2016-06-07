@@ -7,7 +7,6 @@
 //
 
 #include <iostream>
-#include <thread>
 #include "labyrinth.hpp"
 #include "wallfollower.hpp"
 #include "tremaux.hpp"
@@ -24,11 +23,10 @@ int main(int argc, const char * argv[]) {
             
             if (argc == 2) {
                 WallFollower rob(lab);
-                rob.solve();
+                rob.path();
                 std::cout << "Robot finished on " << rob.getSteps() << " steps" << std::endl;
             } else {
                 std::vector<Robot*> robList;
-                std::vector<std::thread> threads;
                 
                 for (int i = 2; i < argc; i++) {
                     std::string arg = argv[i];
@@ -42,12 +40,8 @@ int main(int argc, const char * argv[]) {
                 
                 // Solve robots
                 for(auto it = robList.begin(); it != robList.end(); ++it)
-                    threads.push_back(std::thread((*it)->solve()));
-                
-                // Join threads
-                for (auto it = threads.begin(); it != threads.end(); ++it)
-                    it->join();
-                
+                    (*it)->path();
+            
                 // Show steps
                 for(auto it = robList.begin(); it != robList.end(); ++it)
                     std::cout << "Robot " << it - robList.begin() << " has taken " << (*it)->getSteps() << " steps"<< std::endl;

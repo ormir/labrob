@@ -15,9 +15,9 @@
 class WallFollower: public Robot {
     char direction;
     char changeDirection();
+    bool solve();
 public:
     WallFollower(const Labyrinth);
-    bool solve();
     ~WallFollower();
 };
 
