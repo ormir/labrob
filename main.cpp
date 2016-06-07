@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
             
             if (argc == 2) {
                 WallFollower rob(lab);
-                rob.solve();
+                rob.path();
                 std::cout << "Robot finished on " << rob.getSteps() << " steps" << std::endl;
             } else {
                 std::vector<Robot*> robList;
@@ -40,9 +40,8 @@ int main(int argc, const char * argv[]) {
                 
                 // Solve robots
                 for(auto it = robList.begin(); it != robList.end(); ++it)
-                    (*it)->solve();
+                    (*it)->path();
             
-                
                 // Show steps
                 for(auto it = robList.begin(); it != robList.end(); ++it)
                     std::cout << "Robot " << it - robList.begin() << " has taken " << (*it)->getSteps() << " steps"<< std::endl;

@@ -10,6 +10,7 @@
 #define robot_hpp
 
 #include <stdio.h>
+#include <thread>
 #include "labyrinth.hpp"
 
 class Robot {
@@ -18,10 +19,12 @@ protected:
     int curX;
     int curY;
     Labyrinth lab;
+    std::thread thSolve;
+    virtual bool solve();
 public:
     Robot(const Labyrinth);
-    int getSteps() const;
-    virtual bool solve() = 0;
+    int getSteps();
+    void path();
     virtual ~Robot();
 };
 
