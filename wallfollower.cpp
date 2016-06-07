@@ -13,8 +13,9 @@ Robot(l),
 direction('s') {}
 
 bool WallFollower::solve() {
+    std::vector<std::pair<int, int>> path;
+    
     while (!lab.isAtExit(curX, curY)) {
-        
         direction = changeDirection();
 
         if (direction == 'w') curX--;
@@ -22,8 +23,16 @@ bool WallFollower::solve() {
         else if (direction == 'e') curX ++;
         else if (direction == 'n') curY --;
         
+        // Save path
+        path.push_back(std::make_pair(curX, curY));
+        
         steps++;
     }
+    
+    // Write path to labyrinth
+    for(unsigned int i = 0; i < path.size(); i++)
+        lab.at(path[i].first, path[i].second) = 'x';
+    
     return true;
 }
 

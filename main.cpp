@@ -42,9 +42,11 @@ int main(int argc, const char * argv[]) {
                 for(auto it = robList.begin(); it != robList.end(); ++it)
                     (*it)->path();
             
-                // Show steps
-                for(auto it = robList.begin(); it != robList.end(); ++it)
+                // Show result
+                for(auto it = robList.begin(); it != robList.end(); ++it){
                     std::cout << "Robot " << it - robList.begin() << " has taken " << (*it)->getSteps() << " steps"<< std::endl;
+                    (*it)->showPath();
+                }
                 
                 // Remove robots
                 for(auto it = robList.begin(); it != robList.end(); ++it)

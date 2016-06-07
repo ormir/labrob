@@ -15,9 +15,10 @@ lab(l) {
 }
 
 void Robot::path() {
-    // TODO Thread solve
     thSolve = std::thread([this](){ solve(); });
 }
+
+void Robot::showPath() const { lab.show(); }
 
 bool Robot::solve() { return false; }
 

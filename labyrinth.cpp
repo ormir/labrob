@@ -112,10 +112,10 @@ void Labyrinth::show() const{
         }
         std::cout << std::endl;
     }
-    std::cout << "entry: " << entry[0] << "," << entry[1] << std::endl;
-    std::cout << "exit: " << exit [0] << "," << exit[1] << std::endl;
-    std::cout << "height: " << height << std::endl;
-    std::cout << "width: " << width << std::endl;
+//    std::cout << "entry: " << entry[0] << "," << entry[1] << std::endl;
+//    std::cout << "exit: " << exit [0] << "," << exit[1] << std::endl;
+//    std::cout << "height: " << height << std::endl;
+//    std::cout << "width: " << width << std::endl;
  }
 
 bool Labyrinth::isAtExit(int x, int y) const {

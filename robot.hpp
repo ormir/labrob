@@ -25,6 +25,7 @@ public:
     Robot(const Labyrinth);
     int getSteps();
     void path();
+    void showPath() const;
     virtual ~Robot();
 };
 
